@@ -1,0 +1,7 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj",
+".\Objects\music_data.obj",
+".\Objects\music_player.obj",
+".\Objects\keypad.obj" 
+TO ".\Objects\music" 
+PRINT(".\Listings\music.m51") RAMSIZE(256) 

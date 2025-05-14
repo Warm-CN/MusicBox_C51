@@ -1,0 +1,638 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/15/2025  00:07:29  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+E:\KEIL\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj, .\Objects\music_data.obj, .\Objects\music_player.obj
+>> , .\Objects\keypad.obj TO .\Objects\music PRINT (.\Listings\music.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\main.obj (MAIN)
+  .\Objects\music_data.obj (MUSIC_DATA)
+  .\Objects\music_player.obj (MUSIC_PLAYER)
+  .\Objects\keypad.obj (KEYPAD)
+  E:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+  E:\KEIL\C51\LIB\C51S.LIB (?C?IMUL)
+
+
+LINK MAP OF MODULE:  .\Objects\music (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            REG     0008H     0008H     ABSOLUTE     "REG BANK 1"
+            DATA    0010H     000DH     UNIT         ?DT?MUSIC_PLAYER
+            DATA    001DH     0005H     UNIT         ?DT?MAIN
+            DATA    0022H     0003H     UNIT         _DATA_GROUP_
+            DATA    0025H     0001H     UNIT         ?DT?MUSIC_DATA
+            IDATA   0026H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     UNIT         ?PR?MUSIC_GETSTATE?MUSIC_PLAYER
+            CODE    0006H     0003H     UNIT         ?PR?MUSIC_GETTOTALSONGS?MUSIC_PLAYER
+                    0009H     0002H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     000CH     UNIT         ?PR?MUSIC_PAUSE?MUSIC_PLAYER
+                    001AH     0001H                  *** GAP ***
+            CODE    001BH     0003H     ABSOLUTE     
+            CODE    001EH     01EEH     UNIT         ?CO?MUSIC_DATA
+            CODE    020CH     00B3H     UNIT         ?PR?MAIN?MAIN
+            CODE    02BFH     00A2H     UNIT         ?PR?KEYPAD_GETIMMEDIATEKEYSTATE?KEYPAD
+            CODE    0361H     0092H     UNIT         ?PR?PLAY_NEXT_NOTE?MUSIC_PLAYER
+            CODE    03F3H     008CH     UNIT         ?C_C51STARTUP
+            CODE    047FH     0046H     UNIT         ?PR?MUSIC_TIMER0_ISR?MUSIC_PLAYER
+            CODE    04C5H     0041H     UNIT         ?PR?TIMER1_ISR?MAIN
+            CODE    0506H     0036H     UNIT         ?PR?MUSIC_PLAYER_TICK?MUSIC_PLAYER
+            CODE    053CH     0032H     UNIT         ?PR?_MUSIC_PLAYSONG?MUSIC_PLAYER
+            CODE    056EH     0032H     UNIT         ?PR?MUSIC_RESUME?MUSIC_PLAYER
+            CODE    05A0H     002EH     UNIT         ?PR?_MUSIC_INIT?MUSIC_PLAYER
+            CODE    05CEH     0021H     UNIT         ?PR?_MUSIC_GETSONGNAME?MUSIC_PLAYER
+            CODE    05EFH     0020H     UNIT         ?PR?_DELAY_MS_MAIN?MAIN
+            CODE    060FH     001AH     UNIT         ?PR?MUSIC_STOP?MUSIC_PLAYER
+            CODE    0629H     0016H     UNIT         ?C_INITSEG
+            CODE    063FH     0016H     UNIT         ?PR?_DELAY_MS_SOFTWARE?MUSIC_PLAYER
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/15/2025  00:07:29  PAGE 2
+
+
+            CODE    0655H     0015H     UNIT         ?PR?TIMER0_INIT_FOR_MUSIC?MUSIC_PLAYER
+            CODE    066AH     0013H     UNIT         ?PR?TIMER1_INIT_1MS?MAIN
+            CODE    067DH     0012H     UNIT         ?C?LIB_CODE
+            CODE    068FH     0011H     UNIT         ?PR?KEYPAD_INIT?KEYPAD
+            CODE    06A0H     000EH     UNIT         ?PR?_MUSIC_SETTEMPO?MUSIC_PLAYER
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\music (?C_STARTUP)
+
+
+SEGMENT                                          DATA_GROUP 
+  +--> CALLED SEGMENT                          START    LENGTH
+--------------------------------------------------------------
+?C_C51STARTUP                                  -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                                  0022H    0002H
+  +--> ?PR?KEYPAD_INIT?KEYPAD
+  +--> ?PR?_MUSIC_INIT?MUSIC_PLAYER
+  +--> ?PR?TIMER1_INIT_1MS?MAIN
+  +--> ?PR?_MUSIC_PLAYSONG?MUSIC_PLAYER
+  +--> ?PR?KEYPAD_GETIMMEDIATEKEYSTATE?KEYPAD
+  +--> ?PR?MUSIC_GETSTATE?MUSIC_PLAYER
+  +--> ?PR?MUSIC_PAUSE?MUSIC_PLAYER
+  +--> ?PR?MUSIC_RESUME?MUSIC_PLAYER
+  +--> ?PR?MUSIC_GETTOTALSONGS?MUSIC_PLAYER
+  +--> ?PR?MUSIC_STOP?MUSIC_PLAYER
+  +--> ?PR?_DELAY_MS_MAIN?MAIN
+
+?PR?_MUSIC_INIT?MUSIC_PLAYER                   -----    -----
+  +--> ?PR?TIMER0_INIT_FOR_MUSIC?MUSIC_PLAYER
+
+?PR?_MUSIC_PLAYSONG?MUSIC_PLAYER               0024H    0001H
+  +--> ?PR?MUSIC_STOP?MUSIC_PLAYER
+  +--> ?CO?MUSIC_DATA
+  +--> ?PR?PLAY_NEXT_NOTE?MUSIC_PLAYER
+
+?PR?PLAY_NEXT_NOTE?MUSIC_PLAYER                -----    -----
+  +--> ?PR?MUSIC_STOP?MUSIC_PLAYER
+  +--> ?CO?MUSIC_DATA
+
+?PR?MUSIC_RESUME?MUSIC_PLAYER                  -----    -----
+  +--> ?CO?MUSIC_DATA
+
+*** NEW ROOT ***************************************************
+
+?PR?TIMER1_ISR?MAIN                            -----    -----
+  +--> ?PR?MUSIC_PLAYER_TICK?MUSIC_PLAYER
+
+?PR?MUSIC_PLAYER_TICK?MUSIC_PLAYER             -----    -----
+  +--> ?PR?PLAY_NEXT_NOTE?MUSIC_PLAYER
+
+*** NEW ROOT ***************************************************
+
+?PR?MUSIC_TIMER0_ISR?MUSIC_PLAYER              -----    -----
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/15/2025  00:07:29  PAGE 3
+
+
+  +--> ?CO?MUSIC_DATA
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\music (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:03F3H         SEGMENT       ?C_C51STARTUP
+  I:0026H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:03F6H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:03F3H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:03F3H         LINE#         133
+  C:03F5H         LINE#         134
+  C:03F6H         LINE#         135
+  C:03F7H         LINE#         136
+  C:03F9H         LINE#         185
+  C:03FCH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:04C5H         PUBLIC        Timer1_ISR
+  B:00A8H.7       PUBLIC        EA
+  D:001DH         PUBLIC        G_selected_song_index
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:066AH         PUBLIC        Timer1_Init_1ms
+  C:020CH         PUBLIC        main
+  D:001EH         SYMBOL        s_key_debounced_state
+  D:0098H         PUBLIC        SCON
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/15/2025  00:07:29  PAGE 4
+
+
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  D:001FH         SYMBOL        s_key_current_reading
+  D:0020H         SYMBOL        s_key_last_debounced_state
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.7       PUBLIC        TF1
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  D:0021H         SYMBOL        s_key_debounce_count
+  B:0088H.6       PUBLIC        TR1
+  C:05EFH         PUBLIC        _delay_ms_main
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_MS_MAIN
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:05EFH         LINE#         20
+  C:05EFH         LINE#         22
+  C:05F9H         LINE#         23
+  C:0607H         LINE#         24
+  C:060EH         LINE#         25
+  -------         ENDPROC       _DELAY_MS_MAIN
+  -------         PROC          TIMER1_INIT_1MS
+  C:066AH         LINE#         32
+  C:066AH         LINE#         33
+  C:066DH         LINE#         34
+  C:0670H         LINE#         35
+  C:0673H         LINE#         36
+  C:0676H         LINE#         37
+  C:0678H         LINE#         38
+  C:067AH         LINE#         39
+  C:067CH         LINE#         40
+  -------         ENDPROC       TIMER1_INIT_1MS
+  -------         PROC          TIMER1_ISR
+  C:04C5H         LINE#         42
+  C:04E2H         LINE#         43
+  C:04E5H         LINE#         44
+  C:04E8H         LINE#         45
+  C:04EBH         LINE#         46
+  -------         ENDPROC       TIMER1_ISR
+  -------         PROC          MAIN
+  -------         DO            
+  D:0022H         SYMBOL        processed_key_press
+  D:0023H         SYMBOL        current_music_state
+  -------         ENDDO         
+  C:020CH         LINE#         51
+  C:020CH         LINE#         52
+  C:020FH         LINE#         57
+  C:0212H         LINE#         58
+  C:0219H         LINE#         59
+  C:021CH         LINE#         61
+  C:021EH         LINE#         68
+  C:0223H         LINE#         70
+  C:0228H         LINE#         72
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/15/2025  00:07:29  PAGE 5
+
+
+  C:0228H         LINE#         74
+  C:022DH         LINE#         76
+  C:0232H         LINE#         77
+  C:0235H         LINE#         78
+  C:0237H         LINE#         79
+  C:0239H         LINE#         80
+  C:0244H         LINE#         81
+  C:0247H         LINE#         82
+  C:024AH         LINE#         84
+  C:0254H         LINE#         85
+  C:0257H         LINE#         86
+  C:0257H         LINE#         87
+  C:025AH         LINE#         88
+  C:025AH         LINE#         89
+  C:025AH         LINE#         92
+  C:025FH         LINE#         93
+  C:0264H         LINE#         95
+  C:0273H         LINE#         96
+  C:0273H         LINE#         97
+  C:0279H         LINE#         98
+  C:027CH         LINE#         100
+  C:0284H         LINE#         101
+  C:0287H         LINE#         103
+  C:0289H         LINE#         112
+  C:0289H         LINE#         113
+  C:028BH         LINE#         114
+  C:0294H         LINE#         115
+  C:0297H         LINE#         116
+  C:0297H         LINE#         117
+  C:0297H         LINE#         122
+  C:0299H         LINE#         124
+  C:0299H         LINE#         125
+  C:029DH         LINE#         126
+  C:02A4H         LINE#         127
+  C:02A6H         LINE#         128
+  C:02A8H         LINE#         129
+  C:02A8H         LINE#         130
+  C:02ADH         LINE#         135
+  C:02AFH         LINE#         137
+  C:02AFH         LINE#         138
+  C:02B2H         LINE#         140
+  C:02B2H         LINE#         142
+  C:02B2H         LINE#         143
+  C:02B2H         LINE#         144
+  C:02B2H         LINE#         145
+  C:02B5H         LINE#         146
+  C:02B5H         LINE#         147
+  C:02BCH         LINE#         148
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        MUSIC_DATA
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:0204H         PUBLIC        Songs
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/15/2025  00:07:29  PAGE 6
+
+
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:007AH         PUBLIC        Song_Farewell
+  C:0113H         PUBLIC        Song_Sky
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:0025H         PUBLIC        NUM_SONGS
+  D:00C8H         PUBLIC        T2CON
+  C:0208H         PUBLIC        Song_Names
+  D:00D0H         PUBLIC        PSW
+  C:0030H         PUBLIC        FreqTable
+  -------         ENDMOD        MUSIC_DATA
+
+  -------         MODULE        MUSIC_PLAYER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0010H         SYMBOL        G_current_song_data_ptr
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:0003H         PUBLIC        Music_GetState
+  C:060FH         PUBLIC        Music_Stop
+  D:00A8H         PUBLIC        IE
+  C:053CH         PUBLIC        _Music_PlaySong
+  D:00B8H         PUBLIC        IP
+  C:0655H         SYMBOL        timer0_init_for_music
+  C:06A0H         PUBLIC        _Music_SetTempo
+  C:0006H         PUBLIC        Music_GetTotalSongs
+  D:0012H         SYMBOL        G_note_duration_tick_counter
+  C:05CEH         PUBLIC        _Music_GetSongName
+  C:063FH         SYMBOL        _delay_ms_software
+  D:0014H         SYMBOL        G_current_freq_select
+  B:00A0H.5       PUBLIC        BUZZER_PIN
+  D:0015H         SYMBOL        G_freq_table_offset
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  D:0016H         SYMBOL        G_current_tempo
+  D:0018H         SYMBOL        G_player_state
+  D:0019H         SYMBOL        G_time_since_last_note_ms
+  C:0506H         PUBLIC        Music_Player_Tick
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:00B8H.1       PUBLIC        PT0
+  B:0088H.4       PUBLIC        TR0
+  C:056EH         PUBLIC        Music_Resume
+  D:001BH         SYMBOL        G_current_song_note_index
+  C:000EH         PUBLIC        Music_Pause
+  D:00C8H         PUBLIC        T2CON
+  C:047FH         PUBLIC        Music_Timer0_ISR
+  C:0361H         SYMBOL        play_next_note
+  C:05A0H         PUBLIC        _Music_Init
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_MS_SOFTWARE
+  D:0006H         SYMBOL        ms
+  -------         DO            
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/15/2025  00:07:29  PAGE 7
+
+
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:063FH         LINE#         21
+  C:063FH         LINE#         23
+  C:0649H         LINE#         24
+  C:064AH         LINE#         25
+  C:064CH         LINE#         26
+  C:064EH         LINE#         27
+  C:064EH         LINE#         28
+  C:0650H         LINE#         29
+  C:0652H         LINE#         30
+  C:0654H         LINE#         31
+  -------         ENDPROC       _DELAY_MS_SOFTWARE
+  -------         PROC          TIMER0_INIT_FOR_MUSIC
+  C:0655H         LINE#         33
+  C:0655H         LINE#         34
+  C:0658H         LINE#         35
+  C:065BH         LINE#         36
+  C:065EH         LINE#         37
+  C:0661H         LINE#         38
+  C:0663H         LINE#         39
+  C:0665H         LINE#         40
+  C:0667H         LINE#         41
+  C:0669H         LINE#         42
+  -------         ENDPROC       TIMER0_INIT_FOR_MUSIC
+  -------         PROC          PLAY_NEXT_NOTE
+  -------         DO            
+  D:0005H         SYMBOL        duration_multiplier
+  D:0006H         SYMBOL        timer_reload_val
+  -------         ENDDO         
+  C:0361H         LINE#         44
+  C:0361H         LINE#         48
+  C:036DH         LINE#         49
+  C:036FH         LINE#         51
+  C:036FH         LINE#         53
+  C:037FH         LINE#         55
+  C:0382H         LINE#         56
+  C:0385H         LINE#         58
+  C:0385H         LINE#         60
+  C:038DH         LINE#         61
+  C:039AH         LINE#         62
+  C:03A2H         LINE#         64
+  C:03B9H         LINE#         65
+  C:03BEH         LINE#         67
+  C:03C4H         LINE#         68
+  C:03C6H         LINE#         69
+  C:03C8H         LINE#         70
+  C:03C9H         LINE#         71
+  C:03CCH         LINE#         72
+  C:03ECH         LINE#         73
+  C:03EEH         LINE#         74
+  C:03F0H         LINE#         75
+  C:03F2H         LINE#         76
+  C:03F2H         LINE#         77
+  C:03F2H         LINE#         78
+  -------         ENDPROC       PLAY_NEXT_NOTE
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/15/2025  00:07:29  PAGE 8
+
+
+  -------         PROC          _MUSIC_INIT
+  D:0006H         SYMBOL        initial_tempo
+  C:05A0H         LINE#         83
+  C:05A0H         LINE#         84
+  C:05A3H         LINE#         85
+  C:05B6H         LINE#         86
+  C:05B9H         LINE#         87
+  C:05BDH         LINE#         88
+  C:05C1H         LINE#         89
+  C:05C3H         LINE#         90
+  C:05C7H         LINE#         91
+  C:05CBH         LINE#         92
+  C:05CDH         LINE#         93
+  -------         ENDPROC       _MUSIC_INIT
+  -------         PROC          _MUSIC_PLAYSONG
+  D:0024H         SYMBOL        song_index
+  C:053CH         LINE#         95
+  C:053EH         LINE#         96
+  C:0545H         LINE#         98
+  C:0545H         LINE#         99
+  C:0548H         LINE#         100
+  C:0562H         LINE#         101
+  C:0567H         LINE#         102
+  C:056AH         LINE#         103
+  C:056DH         LINE#         104
+  -------         ENDPROC       _MUSIC_PLAYSONG
+  -------         PROC          MUSIC_STOP
+  C:060FH         LINE#         106
+  C:060FH         LINE#         107
+  C:0611H         LINE#         108
+  C:0613H         LINE#         109
+  C:0616H         LINE#         110
+  C:061AH         LINE#         111
+  C:061EH         LINE#         112
+  C:0620H         LINE#         113
+  C:0624H         LINE#         114
+  C:0628H         LINE#         115
+  -------         ENDPROC       MUSIC_STOP
+  -------         PROC          MUSIC_PAUSE
+  C:000EH         LINE#         117
+  C:000EH         LINE#         118
+  C:0014H         LINE#         119
+  C:0016H         LINE#         120
+  C:0019H         LINE#         121
+  C:0019H         LINE#         122
+  -------         ENDPROC       MUSIC_PAUSE
+  -------         PROC          MUSIC_RESUME
+  -------         DO            
+  D:0006H         SYMBOL        timer_reload_val
+  -------         ENDDO         
+  C:056EH         LINE#         124
+  C:056EH         LINE#         126
+  C:0574H         LINE#         127
+  C:0577H         LINE#         128
+  C:057CH         LINE#         129
+  C:0599H         LINE#         130
+  C:059BH         LINE#         131
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/15/2025  00:07:29  PAGE 9
+
+
+  C:059DH         LINE#         132
+  C:059FH         LINE#         133
+  C:059FH         LINE#         134
+  C:059FH         LINE#         135
+  -------         ENDPROC       MUSIC_RESUME
+  -------         PROC          _MUSIC_SETTEMPO
+  D:0006H         SYMBOL        new_tempo
+  C:06A0H         LINE#         137
+  C:06A0H         LINE#         138
+  C:06A9H         LINE#         139
+  C:06ADH         LINE#         140
+  C:06ADH         LINE#         141
+  -------         ENDPROC       _MUSIC_SETTEMPO
+  -------         PROC          MUSIC_GETSTATE
+  C:0003H         LINE#         143
+  C:0003H         LINE#         144
+  C:0005H         LINE#         145
+  -------         ENDPROC       MUSIC_GETSTATE
+  -------         PROC          MUSIC_GETTOTALSONGS
+  C:0006H         LINE#         147
+  C:0006H         LINE#         148
+  C:0008H         LINE#         149
+  -------         ENDPROC       MUSIC_GETTOTALSONGS
+  -------         PROC          _MUSIC_GETSONGNAME
+  D:0007H         SYMBOL        song_index
+  C:05CEH         LINE#         153
+  C:05CEH         LINE#         154
+  C:05D4H         LINE#         155
+  C:05EBH         LINE#         156
+  C:05EBH         LINE#         157
+  C:05EEH         LINE#         158
+  -------         ENDPROC       _MUSIC_GETSONGNAME
+  -------         PROC          MUSIC_PLAYER_TICK
+  C:0506H         LINE#         160
+  C:0506H         LINE#         161
+  C:050CH         LINE#         162
+  C:0514H         LINE#         163
+  C:051DH         LINE#         164
+  C:0534H         LINE#         165
+  C:0536H         LINE#         166
+  C:0538H         LINE#         167
+  C:0538H         LINE#         168
+  C:053BH         LINE#         169
+  C:053BH         LINE#         170
+  C:053BH         LINE#         171
+  -------         ENDPROC       MUSIC_PLAYER_TICK
+  -------         PROC          MUSIC_TIMER0_ISR
+  -------         DO            
+  D:000EH         SYMBOL        reload_value
+  -------         ENDDO         
+  C:047FH         LINE#         176
+  C:048AH         LINE#         178
+  C:0495H         LINE#         179
+  C:04B2H         LINE#         180
+  C:04B4H         LINE#         181
+  C:04B6H         LINE#         182
+  C:04B8H         LINE#         183
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/15/2025  00:07:29  PAGE 10
+
+
+  C:04BAH         LINE#         184
+  C:04BCH         LINE#         185
+  C:04BCH         LINE#         186
+  -------         ENDPROC       MUSIC_TIMER0_ISR
+  -------         ENDMOD        MUSIC_PLAYER
+
+  -------         MODULE        KEYPAD
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:02BFH         PUBLIC        Keypad_GetImmediateKeyState
+  B:0090H.3       PUBLIC        KEYPAD_COL0
+  B:0090H.2       PUBLIC        KEYPAD_COL1
+  B:0090H.1       PUBLIC        KEYPAD_COL2
+  B:0090H.0       PUBLIC        KEYPAD_COL3
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  B:0090H.4       PUBLIC        KEYPAD_ROW0
+  B:0090H.5       PUBLIC        KEYPAD_ROW1
+  B:0090H.6       PUBLIC        KEYPAD_ROW2
+  B:0090H.7       PUBLIC        KEYPAD_ROW3
+  C:068FH         PUBLIC        Keypad_Init
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          KEYPAD_INIT
+  C:068FH         LINE#         13
+  C:068FH         LINE#         20
+  C:0691H         LINE#         21
+  C:0693H         LINE#         22
+  C:0695H         LINE#         23
+  C:0697H         LINE#         28
+  C:0699H         LINE#         29
+  C:069BH         LINE#         30
+  C:069DH         LINE#         31
+  C:069FH         LINE#         36
+  -------         ENDPROC       KEYPAD_INIT
+  -------         PROC          KEYPAD_GETIMMEDIATEKEYSTATE
+  -------         DO            
+  D:0007H         SYMBOL        key_code
+  -------         ENDDO         
+  C:02BFH         LINE#         38
+  C:02BFH         LINE#         39
+  C:02C1H         LINE#         42
+  C:02C9H         LINE#         43
+  C:02D0H         LINE#         44
+  C:02D7H         LINE#         45
+  C:02DEH         LINE#         46
+  C:02E3H         LINE#         47
+  C:02E5H         LINE#         48
+  C:02EAH         LINE#         51
+  C:02F2H         LINE#         52
+  C:02F9H         LINE#         53
+  C:0300H         LINE#         54
+  C:0307H         LINE#         55
+  C:030CH         LINE#         56
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/15/2025  00:07:29  PAGE 11
+
+
+  C:030EH         LINE#         57
+  C:0313H         LINE#         60
+  C:031BH         LINE#         61
+  C:0322H         LINE#         62
+  C:0329H         LINE#         63
+  C:0330H         LINE#         64
+  C:0335H         LINE#         65
+  C:0337H         LINE#         66
+  C:033CH         LINE#         69
+  C:0344H         LINE#         70
+  C:034BH         LINE#         71
+  C:0352H         LINE#         72
+  C:0359H         LINE#         73
+  C:035EH         LINE#         74
+  C:0360H         LINE#         77
+  C:0360H         LINE#         78
+  -------         ENDPROC       KEYPAD_GETIMMEDIATEKEYSTATE
+  -------         ENDMOD        KEYPAD
+
+  -------         MODULE        ?C?IMUL
+  C:067DH         PUBLIC        ?C?IMUL
+  -------         ENDMOD        ?C?IMUL
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS_SOFTWARE?MUSIC_PLAYER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_MUSIC_SETTEMPO?MUSIC_PLAYER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_MUSIC_GETSONGNAME?MUSIC_PLAYER
+
+Program Size: data=39.0 xdata=0 code=1707
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)
