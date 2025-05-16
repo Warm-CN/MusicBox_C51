@@ -65,7 +65,7 @@ const unsigned int code FreqTable[] = {
 //-----------------------------------------------------------------------------
 const unsigned char code Song_Farewell[] = {
     // Prelude
-    NOTE_M5,4,  NOTE_M3,2,  NOTE_M5,2,  NOTE_H1,6,  NOTE_M7,2,
+    NOTE_P,12,   NOTE_M5,4,  NOTE_M3,2,  NOTE_M5,2,  NOTE_H1,6,  NOTE_M7,2,
     NOTE_M6,4,  NOTE_H1,4,  NOTE_M5,8,
     NOTE_M5,4,  NOTE_M2,2,  NOTE_M3,2,  NOTE_M4,6,  NOTE_L7,2, // NOTE_L7 might be too low with this table, adjust if needed
     NOTE_M1,16,
@@ -131,16 +131,46 @@ const unsigned char code Song_Sky[] = {
 };
 
 //-----------------------------------------------------------------------------
-// Song List Management
+// Song Data: "Ode to Joy"
 //-----------------------------------------------------------------------------
+const unsigned char code Song_OdeToJoy[] = {
+	  NOTE_P, 12,
+	  // Phrase 1 (E E F G | G F E D | C C D E | E. D D_half)
+    NOTE_M3, 4, NOTE_M3, 4, NOTE_M4, 4, NOTE_M5, 4,  // Mi Mi Fa So
+    NOTE_M5, 4, NOTE_M4, 4, NOTE_M3, 4, NOTE_M2, 4,  // So Fa Mi Re
+    NOTE_M1, 4, NOTE_M1, 4, NOTE_M2, 4, NOTE_M3, 4,  // Do Do Re Mi
+    NOTE_M3, 6, NOTE_M2, 2, NOTE_M2, 8,              // Mi. Re Re-
+
+    // Phrase 2 (E E F G | G F E D | C C D E | D. C C_half)
+    NOTE_M3, 4, NOTE_M3, 4, NOTE_M4, 4, NOTE_M5, 4,  // Mi Mi Fa So
+    NOTE_M5, 4, NOTE_M4, 4, NOTE_M3, 4, NOTE_M2, 4,  // So Fa Mi Re
+    NOTE_M1, 4, NOTE_M1, 4, NOTE_M2, 4, NOTE_M3, 4,  // Do Do Re Mi
+    NOTE_M2, 6, NOTE_M1, 2, NOTE_M1, 8,              // Re. Do Do-
+
+    // Phrase 3 (D D E C | D E F G E C | D E F G E D | C D G_low_half)
+    NOTE_M2, 4, NOTE_M2, 4, NOTE_M3, 4, NOTE_M1, 4,  // Re Re Mi Do
+    NOTE_M2, 4, NOTE_M3, 2, NOTE_M4, 2, NOTE_M3, 4,  NOTE_M1, 4, // Re Mi Fa Mi Do
+    NOTE_M2, 4, NOTE_M3, 4, NOTE_M3, 4, NOTE_M2, 4, // Re Mi Mi Re 
+    NOTE_M1, 4, NOTE_M2, 4, NOTE_L5, 8,              // Do Re Sol(low)-
+
+    // Phrase 4 (Repeat of Phrase 2 logic)
+    NOTE_M3, 4, NOTE_M3, 4, NOTE_M4, 4, NOTE_M5, 4,  // Mi Mi Fa So
+    NOTE_M5, 4, NOTE_M4, 4, NOTE_M3, 4, NOTE_M2, 4,  // So Fa Mi Re
+    NOTE_M1, 4, NOTE_M1, 4, NOTE_M2, 4, NOTE_M3, 4,  // Do Do Re Mi
+    NOTE_M2, 6, NOTE_M1, 2, NOTE_M1, 8,              // Re. Do Do-
+    
+    SONG_END_MARKER
+};
 const unsigned char code * const code Songs[] = {
     Song_Farewell,
-    Song_Sky
+    Song_Sky,
+		Song_OdeToJoy	  
 };
 
 const char code * const code Song_Names[] = {
     "Farewell",
-    "Sky City"
+    "Sky City",
+	  "OdeToJoy"
 };
 
 const unsigned char NUM_SONGS = sizeof(Songs) / sizeof(Songs[0]);

@@ -17,6 +17,7 @@ extern const unsigned int code FreqTable[];
 // Stored in CODE memory.
 extern const unsigned char code Song_Farewell[];
 extern const unsigned char code Song_Sky[];
+extern const unsigned char code Song_OdeToJoy[];
 // Add declarations for more songs here if you add them to music_data.c
 // extern const unsigned char code Song_AnotherSong[];
 

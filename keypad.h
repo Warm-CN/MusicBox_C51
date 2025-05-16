@@ -7,10 +7,10 @@
 // Keypad Pin Definitions (based on image_303460.png)
 //-----------------------------------------------------------------------------
 // Row lines - Output
-sbit KEYPAD_ROW0 = P1^4; // Connected to S1-S4 row
-sbit KEYPAD_ROW1 = P1^5; // Connected to S5-S8 row
-sbit KEYPAD_ROW2 = P1^6; // Connected to S9-S12 row
-sbit KEYPAD_ROW3 = P1^7; // Connected to S13-S16 row
+sbit KEYPAD_ROW0 = P1^7; // Connected to S1-S4 row
+sbit KEYPAD_ROW1 = P1^6; // Connected to S5-S8 row
+sbit KEYPAD_ROW2 = P1^5; // Connected to S9-S12 row
+sbit KEYPAD_ROW3 = P1^4; // Connected to S13-S16 row
 
 // Column lines - Input
 sbit KEYPAD_COL0 = P1^3; // Connected to S1,S5,S9,S13 column

@@ -7,7 +7,7 @@
 //-----------------------------------------------------------------------------
 // Hardware Configuration
 //-----------------------------------------------------------------------------
-sbit BUZZER_PIN = P2^5; // Buzzer connected to P2.5
+sbit BUZZER_PIN = P2^4; 
 
 //-----------------------------------------------------------------------------
 // Note Definitions (Indices for FreqTable)
@@ -74,6 +74,8 @@ void Music_Stop(void);
 void Music_Pause(void);
 void Music_Resume(void);
 void Music_SetTempo(unsigned int new_tempo);
+// Add to public function prototypes
+unsigned long Music_GetCurrentSongElapsedTimeMs(void);
 PlayerState Music_GetState(void);
 unsigned char Music_GetTotalSongs(void);
 

@@ -1,4 +1,4 @@
-C51 COMPILER V9.59.0.0   MUSIC_DATA                                                        05/15/2025 00:04:18 PAGE 1   
+C51 COMPILER V9.59.0.0   MUSIC_DATA                                                        05/16/2025 21:30:06 PAGE 1   
 
 
 C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MUSIC_DATA
@@ -62,7 +62,7 @@ line level    source
   52              0,                               // H2_ (Placeholder for D#5)
   53              65536 - (921600 / (2 * 659.25)), // H3 (E5) ~659.25 Hz -> 65536 - 699  = 64837
   54              65536 - (921600 / (2 * 698.46)), // H4 (F5) ~698.46 Hz -> 65536 - 660  = 64876  -- Note: Freq for F5 i
-C51 COMPILER V9.59.0.0   MUSIC_DATA                                                        05/15/2025 00:04:18 PAGE 2   
+C51 COMPILER V9.59.0.0   MUSIC_DATA                                                        05/16/2025 21:30:06 PAGE 2   
 
              -s 698.46, (921600/(2*698.46)) = 659.8 ~ 660
   55              0,                               // H4_ (Placeholder for F#5)
@@ -79,7 +79,7 @@ line level    source
   65          //-----------------------------------------------------------------------------
   66          const unsigned char code Song_Farewell[] = {
   67              // Prelude
-  68              NOTE_M5,4,  NOTE_M3,2,  NOTE_M5,2,  NOTE_H1,6,  NOTE_M7,2,
+  68              NOTE_P,12,   NOTE_M5,4,  NOTE_M3,2,  NOTE_M5,2,  NOTE_H1,6,  NOTE_M7,2,
   69              NOTE_M6,4,  NOTE_H1,4,  NOTE_M5,8,
   70              NOTE_M5,4,  NOTE_M2,2,  NOTE_M3,2,  NOTE_M4,6,  NOTE_L7,2, // NOTE_L7 might be too low with this table
              -, adjust if needed
@@ -126,7 +126,7 @@ line level    source
  110              NOTE_M4, 4,   NOTE_H1, 2,  NOTE_M7, 2+2, NOTE_H1, 2+4,
  111              NOTE_H2, 2,   NOTE_H2, 2,  NOTE_H3, 2,  NOTE_H1, 2+4+4,
  112              NOTE_H1, 2,   NOTE_M7, 2,  NOTE_M6, 2,  NOTE_M6, 2,  NOTE_M7, 4,  NOTE_M5, 4, // Replaced NOTE_M5_
-C51 COMPILER V9.59.0.0   MUSIC_DATA                                                        05/15/2025 00:04:18 PAGE 3   
+C51 COMPILER V9.59.0.0   MUSIC_DATA                                                        05/16/2025 21:30:06 PAGE 3   
 
  113              NOTE_M6, 4+4+4, NOTE_H1, 2,  NOTE_H2, 2,
  114              NOTE_H3, 4+2, NOTE_H2, 2, NOTE_H3, 4,  NOTE_H5, 4,
@@ -149,24 +149,56 @@ line level    source
  131          };
  132          
  133          //-----------------------------------------------------------------------------
- 134          // Song List Management
+ 134          // Song Data: "Ode to Joy"
  135          //-----------------------------------------------------------------------------
- 136          const unsigned char code * const code Songs[] = {
- 137              Song_Farewell,
- 138              Song_Sky
- 139          };
- 140          
- 141          const char code * const code Song_Names[] = {
- 142              "Farewell",
- 143              "Sky City"
- 144          };
- 145          
- 146          const unsigned char NUM_SONGS = sizeof(Songs) / sizeof(Songs[0]);
+ 136          const unsigned char code Song_OdeToJoy[] = {
+ 137              NOTE_P, 12,
+ 138              // Phrase 1 (E E F G | G F E D | C C D E | E. D D_half)
+ 139              NOTE_M3, 4, NOTE_M3, 4, NOTE_M4, 4, NOTE_M5, 4,  // Mi Mi Fa So
+ 140              NOTE_M5, 4, NOTE_M4, 4, NOTE_M3, 4, NOTE_M2, 4,  // So Fa Mi Re
+ 141              NOTE_M1, 4, NOTE_M1, 4, NOTE_M2, 4, NOTE_M3, 4,  // Do Do Re Mi
+ 142              NOTE_M3, 6, NOTE_M2, 2, NOTE_M2, 8,              // Mi. Re Re-
+ 143          
+ 144              // Phrase 2 (E E F G | G F E D | C C D E | D. C C_half)
+ 145              NOTE_M3, 4, NOTE_M3, 4, NOTE_M4, 4, NOTE_M5, 4,  // Mi Mi Fa So
+ 146              NOTE_M5, 4, NOTE_M4, 4, NOTE_M3, 4, NOTE_M2, 4,  // So Fa Mi Re
+ 147              NOTE_M1, 4, NOTE_M1, 4, NOTE_M2, 4, NOTE_M3, 4,  // Do Do Re Mi
+ 148              NOTE_M2, 6, NOTE_M1, 2, NOTE_M1, 8,              // Re. Do Do-
+ 149          
+ 150              // Phrase 3 (D D E C | D E F G E C | D E F G E D | C D G_low_half)
+ 151              NOTE_M2, 4, NOTE_M2, 4, NOTE_M3, 4, NOTE_M1, 4,  // Re Re Mi Do
+ 152              NOTE_M2, 4, NOTE_M3, 2, NOTE_M4, 2, NOTE_M3, 4,  NOTE_M1, 4, // Re Mi Fa Mi Do
+ 153              NOTE_M2, 4, NOTE_M3, 4, NOTE_M3, 4, NOTE_M2, 4, // Re Mi Mi Re 
+ 154              NOTE_M1, 4, NOTE_M2, 4, NOTE_L5, 8,              // Do Re Sol(low)-
+ 155          
+ 156              // Phrase 4 (Repeat of Phrase 2 logic)
+ 157              NOTE_M3, 4, NOTE_M3, 4, NOTE_M4, 4, NOTE_M5, 4,  // Mi Mi Fa So
+ 158              NOTE_M5, 4, NOTE_M4, 4, NOTE_M3, 4, NOTE_M2, 4,  // So Fa Mi Re
+ 159              NOTE_M1, 4, NOTE_M1, 4, NOTE_M2, 4, NOTE_M3, 4,  // Do Do Re Mi
+ 160              NOTE_M2, 6, NOTE_M1, 2, NOTE_M1, 8,              // Re. Do Do-
+ 161              
+ 162              SONG_END_MARKER
+ 163          };
+ 164          const unsigned char code * const code Songs[] = {
+ 165              Song_Farewell,
+ 166              Song_Sky,
+ 167              Song_OdeToJoy   
+ 168          };
+ 169          
+ 170          const char code * const code Song_Names[] = {
+ 171              "Farewell",
+ 172              "Sky City",
+ 173              "OdeToJoy"
+ 174          };
+C51 COMPILER V9.59.0.0   MUSIC_DATA                                                        05/16/2025 21:30:06 PAGE 4   
+
+ 175          
+ 176          const unsigned char NUM_SONGS = sizeof(Songs) / sizeof(Songs[0]);
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =   ----    ----
-   CONSTANT SIZE    =    494    ----
+   CONSTANT SIZE    =    634    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =      1    ----
